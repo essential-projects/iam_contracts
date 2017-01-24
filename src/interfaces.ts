@@ -1,15 +1,4 @@
-import {Entity} from 'data_model_contracts';
-import {ExecutionContext} from './execution_context';
-
-export interface ITokenData {
-  identity: string;
-  userToken: string;
-  system?: any;
-}
-
-export enum TokenType {
-  jwt
-}
+import {ExecutionContext, TokenType, IEntity, ITokenData} from '@process-engine-js/core_contracts';
 
 export interface ITokenAdapter {
   tokenType: TokenType;
@@ -28,9 +17,13 @@ export interface ITokenService {
   initialize(): void;
   encode(payload: any, tokenType: TokenType): Promise<string>;
   decode(token: string, tokenType: TokenType): Promise<any>;
-  createTokenEntity(context: ExecutionContext, tokenData: any): Promise<Entity>;
-  getTokenEntity(context: ExecutionContext, tokenId: string): Promise<Entity>;
+  createTokenEntity(context: ExecutionContext, tokenData: any): Promise<ITokenEntity>;
+  getTokenEntity(context: ExecutionContext, tokenId: string): Promise<ITokenEntity>;
   revokeToken(context: ExecutionContext, tokenId: string): Promise<boolean>;
+}
+
+export interface ITokenEntity extends IEntity {
+
 }
 
 export interface IIamService {
