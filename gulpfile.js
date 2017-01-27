@@ -3,6 +3,7 @@
 const gulptraum = require('gulptraum');
 
 const buildSystemConfig = {
+  packageName: 'iam_contracts'
 };
 
 const buildSystem = new gulptraum.BuildSystem(buildSystemConfig);
