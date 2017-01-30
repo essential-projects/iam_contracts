@@ -47,7 +47,7 @@ export interface IIdentity {
  toPojo(context: ExecutionContext, options: IGetOptions): Promise<any>;
 }
 
-export interface IIdentityEntity {
-  authenticate(context: ExecutionContext, username: string, password: string): IIdentity;
-  getIdentity(context: ExecutionContext, identityId: string);
+export interface IIdentityService {
+  authenticate(context: ExecutionContext, username: string, password: string): Promise<IIdentity>;
+  getIdentity(context: ExecutionContext, identityId: string): Promise<IIdentity>;
 }
