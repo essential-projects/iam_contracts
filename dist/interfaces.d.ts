@@ -5,6 +5,12 @@ export interface IUserEntity extends IEntity {
     password: string;
     roles: Array<string>;
 }
+export interface ISessionStoreEntity extends IEntity {
+    id: string;
+    identityId: string;
+    systemUserId: string;
+    data: any;
+}
 export interface ITokenAdapter {
     tokenType: TokenType;
     encode(payload: ITokenData): Promise<string>;
