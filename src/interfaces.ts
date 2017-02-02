@@ -33,7 +33,7 @@ export interface ISessionStoreEntity extends IEntity {
 }
 
 export interface IIamService {
-  authenticateByUsername(username: string, password: string, tokenType?: TokenType): Promise<string>;
+  authenticateByUsername(username: string, password: string, userNamespace: string, tokenType?: TokenType): Promise<string>;
   authenticateBySystemUser(systemUser: string, tokenType?: TokenType): Promise<string>;
   createInternalContext(systemUser: string, tokenType?: TokenType): Promise<ExecutionContext>;
   resolveExecutionContext(encodedToken: string, tokenType?: TokenType): Promise<ExecutionContext>;
