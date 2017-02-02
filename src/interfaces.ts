@@ -1,5 +1,12 @@
 import {ExecutionContext, TokenType, IEntity, ITokenData, IGetOptions, ISessionStoreData} from '@process-engine-js/core_contracts';
 
+export interface IUserEntity extends IEntity {
+  id: string;
+  name: string;
+  password: string;
+  roles: Array<string>;
+}
+
 export interface ITokenAdapter {
   tokenType: TokenType;
   encode(payload: ITokenData): Promise<string>;
@@ -7,9 +14,9 @@ export interface ITokenAdapter {
 }
 
 export interface IAuthService {
-  authenticateByUsername(username: string, password: string, context: ExecutionContext): Promise<IIdentity>;
+  authenticateByUsername(username: string, password: string, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
   authenticateBySystemUser(token: string, context: ExecutionContext): Promise<IIdentity>;
-  getIdentity(id: string, isSystemUser: boolean, context: ExecutionContext): Promise<IIdentity>;
+  getIdentity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
 }
 
 export interface ITokenService {
@@ -31,7 +38,7 @@ export interface IIamService {
   createInternalContext(systemUser: string, tokenType?: TokenType): Promise<ExecutionContext>;
   resolveExecutionContext(encodedToken: string, tokenType?: TokenType): Promise<ExecutionContext>;
   hasClaim(context: ExecutionContext, claim: string, systemRoles?: any): Promise<boolean>;
-  getIdentity(context: ExecutionContext): Promise<IIdentity>;
+  getIdentity(context: ExecutionContext, userNamespace: string): Promise<IIdentity>;
   logout(context: ExecutionContext): Promise<boolean>;
   initialize(): void;
 }
@@ -47,6 +54,6 @@ export interface IIdentity {
 }
 
 export interface IIdentityService {
-  authenticate(context: ExecutionContext, username: string, password: string): Promise<IIdentity>;
-  getIdentity(context: ExecutionContext, identityId: string): Promise<IIdentity>;
+  authenticate(context: ExecutionContext, userNamespace: string, username: string, password: string): Promise<IIdentity>;
+  getIdentity(context: ExecutionContext, userNamespace: string, userId: string): Promise<IIdentity>;
 }
