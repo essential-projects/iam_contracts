@@ -1,4 +1,4 @@
-import { ExecutionContext, TokenType, IEntity, ITokenData, IGetOptions, ISessionStoreData } from '@process-engine-js/core_contracts';
+import { ExecutionContext, TokenType, IEntity, ITokenData, ISessionStoreData } from '@process-engine-js/core_contracts';
 export interface ITokenAdapter {
     tokenType: TokenType;
     encode(payload: ITokenData): Promise<string>;
@@ -36,7 +36,6 @@ export interface IClaimService {
 export interface IIdentity {
     id: string;
     roles: Array<string>;
-    toPojo(context: ExecutionContext, options: IGetOptions): Promise<any>;
 }
 export interface IIdentityService {
     authenticate(context: ExecutionContext, username: string, password: string): Promise<IIdentity>;

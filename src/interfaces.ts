@@ -44,7 +44,6 @@ export interface IClaimService {
 export interface IIdentity {
  id: string;
  roles: Array<string>;
- toPojo(context: ExecutionContext, options: IGetOptions): Promise<any>;
 }
 
 export interface IIdentityService {
