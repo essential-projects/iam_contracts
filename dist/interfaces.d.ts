@@ -34,7 +34,6 @@ export interface IClaimService {
     initialize(): void;
 }
 export interface IIdentity {
-    new (id: string, roles: Array<string>): IIdentity;
     id: string;
     roles: Array<string>;
 }
