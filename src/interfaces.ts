@@ -42,8 +42,9 @@ export interface IClaimService {
 }
 
 export interface IIdentity {
- id: string;
- roles: Array<string>;
+  new (id: string, roles: Array<string>): IIdentity;
+  id: string;
+  roles: Array<string>;
 }
 
 export interface IIdentityService {
