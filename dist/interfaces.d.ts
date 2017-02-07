@@ -1,12 +1,10 @@
 import { ExecutionContext, TokenType, IEntity, ITokenData, ISessionStoreData } from '@process-engine-js/core_contracts';
 export interface IUserEntity extends IEntity {
-    id: string;
     name: string;
     password: string;
     roles: Array<string>;
 }
 export interface ISessionStoreEntity extends IEntity {
-    id: string;
     identityId: string;
     systemUserId: string;
     data: any;
@@ -28,8 +26,6 @@ export interface ITokenService {
     createSessionStoreEntity(context: ExecutionContext, sessionStoreData: ISessionStoreData): Promise<ISessionStoreEntity>;
     getSessionStoreEntity(context: ExecutionContext, sessionStoreId: string): Promise<ISessionStoreEntity>;
     revokeSession(context: ExecutionContext, sessionStoreId: string): Promise<boolean>;
-}
-export interface ISessionStoreEntity extends IEntity {
 }
 export interface IIamService {
     authenticateByUsername(username: string, password: string, userNamespace: string, tokenType?: TokenType): Promise<string>;
