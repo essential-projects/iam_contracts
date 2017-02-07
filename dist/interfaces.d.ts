@@ -1,4 +1,4 @@
-import { ExecutionContext, TokenType, IEntity, ITokenData, ISessionStoreData } from '@process-engine-js/core_contracts';
+import { ExecutionContext, TokenType, IEntity, ITokenData, ISessionStoreData, IToPojoOptions } from '@process-engine-js/core_contracts';
 export interface IUserEntity extends IEntity {
     name: string;
     password: string;
@@ -15,9 +15,9 @@ export interface ITokenAdapter {
     decode(token: string): Promise<ITokenData>;
 }
 export interface IAuthService {
-    authenticateByUsername(username: string, password: string, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
-    authenticateBySystemUser(token: string, context: ExecutionContext): Promise<IIdentity>;
-    getIdentity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
+    authenticateByUsername<T>(username: string, password: string, userNamespace: string, context: ExecutionContext): Promise<IIdentity<T>>;
+    authenticateBySystemUser<T>(token: string, context: ExecutionContext): Promise<IIdentity<T>>;
+    getIdentity<T>(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IIdentity<T>>;
 }
 export interface ITokenService {
     initialize(): void;
@@ -33,19 +33,20 @@ export interface IIamService {
     createInternalContext(systemUser: string, tokenType?: TokenType): Promise<ExecutionContext>;
     resolveExecutionContext(encodedToken: string, tokenType?: TokenType): Promise<ExecutionContext>;
     hasClaim(context: ExecutionContext, claim: string, systemRoles?: any): Promise<boolean>;
-    getIdentity(context: ExecutionContext, userNamespace: string): Promise<IIdentity>;
+    getIdentity<T>(context: ExecutionContext, userNamespace: string): Promise<IIdentity<T>>;
     logout(context: ExecutionContext): Promise<boolean>;
     initialize(): void;
 }
 export interface IClaimService {
-    hasClaim(identity: IIdentity, claim: string, systemRoles?: any): Promise<boolean>;
+    hasClaim(identity: IIdentity<any>, claim: string, systemRoles?: any): Promise<boolean>;
     initialize(): void;
 }
-export interface IIdentity {
+export interface IIdentity<T> {
     id: string;
     roles: Array<string>;
+    toPojo(context: ExecutionContext, options?: IToPojoOptions): Promise<any>;
 }
 export interface IIdentityService {
-    authenticate(context: ExecutionContext, userNamespace: string, username: string, password: string): Promise<IIdentity>;
-    getIdentity(context: ExecutionContext, userNamespace: string, userId: string): Promise<IIdentity>;
+    authenticate<T>(context: ExecutionContext, userNamespace: string, username: string, password: string): Promise<IIdentity<T>>;
+    getIdentity<T>(context: ExecutionContext, userNamespace: string, userId: string): Promise<IIdentity<T>>;
 }
