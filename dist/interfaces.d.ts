@@ -18,6 +18,7 @@ export interface IAuthService {
     authenticateBySystemUser(token: string, context: ExecutionContext): Promise<IIdentity>;
     getIdentity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
     getIdentityEntity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IUserEntity>;
+    flattenRoles(roles: Array<string>): Array<string>;
 }
 export interface ITokenService {
     initialize(): void;
@@ -32,14 +33,14 @@ export interface IIamService {
     authenticateBySystemUser(systemUser: string, tokenType?: TokenType): Promise<string>;
     createInternalContext(systemUser: string, tokenType?: TokenType): Promise<ExecutionContext>;
     resolveExecutionContext(encodedToken: string, tokenType?: TokenType): Promise<ExecutionContext>;
-    hasClaim(context: ExecutionContext, claim: string, systemRoles?: any): Promise<boolean>;
+    hasClaim(context: ExecutionContext, claim: string, staticPermissions?: any): Promise<boolean>;
     getIdentity(context: ExecutionContext, userNamespace: string): Promise<IIdentity>;
     getIdentityEntity(context: ExecutionContext, userNamespace: string): Promise<IUserEntity>;
     logout(context: ExecutionContext): Promise<boolean>;
     initialize(): void;
 }
 export interface IClaimService {
-    hasClaim(identity: IIdentity, claim: string, systemRoles?: any): Promise<boolean>;
+    hasClaim(roles: Array<string>, claim: string, systemRoles?: any): Promise<boolean>;
     initialize(): void;
 }
 export interface IIdentity {
