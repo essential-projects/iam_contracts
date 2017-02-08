@@ -1,9 +1,8 @@
 import {ExecutionContext, TokenType, IEntity, ITokenData, ISessionStoreData, IToPojoOptions} from '@process-engine-js/core_contracts';
 
-export interface IUserEntity extends IEntity {
+export interface IUserEntity extends IEntity, IIdentity {
   name: string;
   password: string;
-  roles: Array<string>;
 }
 
 export interface ISessionStoreEntity extends IEntity {
@@ -19,9 +18,10 @@ export interface ITokenAdapter {
 }
 
 export interface IAuthService {
-  authenticateByUsername<T>(username: string, password: string, userNamespace: string, context: ExecutionContext): Promise<IIdentity<T>>;
-  authenticateBySystemUser<T>(token: string, context: ExecutionContext): Promise<IIdentity<T>>;
-  getIdentity<T>(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IIdentity<T>>;
+  authenticateByUsername(username: string, password: string, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
+  authenticateBySystemUser(token: string, context: ExecutionContext): Promise<IIdentity>;
+  getIdentity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
+  getIdentityEntity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IUserEntity>;
 }
 
 export interface ITokenService {
@@ -39,23 +39,24 @@ export interface IIamService {
   createInternalContext(systemUser: string, tokenType?: TokenType): Promise<ExecutionContext>;
   resolveExecutionContext(encodedToken: string, tokenType?: TokenType): Promise<ExecutionContext>;
   hasClaim(context: ExecutionContext, claim: string, systemRoles?: any): Promise<boolean>;
-  getIdentity<T>(context: ExecutionContext, userNamespace: string): Promise<IIdentity<T>>;
+  getIdentity(context: ExecutionContext, userNamespace: string): Promise<IIdentity>;
+  getIdentityEntity(context: ExecutionContext, userNamespace: string): Promise<IUserEntity>;
   logout(context: ExecutionContext): Promise<boolean>;
   initialize(): void;
 }
 
 export interface IClaimService {
-  hasClaim(identity: IIdentity<any>, claim: string, systemRoles?: any): Promise<boolean>;
+  hasClaim(identity: IIdentity, claim: string, systemRoles?: any): Promise<boolean>;
   initialize(): void;
 }
 
-export interface IIdentity<T> {
+export interface IIdentity {
   id: string;
   roles: Array<string>;
-  toPojo(context: ExecutionContext, options?: IToPojoOptions): Promise<any>;
 }
 
 export interface IIdentityService {
-  authenticate<T>(context: ExecutionContext, userNamespace: string, username: string, password: string): Promise<IIdentity<T>>;
-  getIdentity<T>(context: ExecutionContext, userNamespace: string, userId: string): Promise<IIdentity<T>>;
+  authenticate(context: ExecutionContext, userNamespace: string, username: string, password: string): Promise<IIdentity>;
+  getIdentity(context: ExecutionContext, userNamespace: string, userId: string): Promise<IIdentity>;
+  getIdentityEntity(context: ExecutionContext, userNamespace: string, userId: string): Promise<IUserEntity>;
 }
