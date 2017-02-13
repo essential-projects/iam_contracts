@@ -47,7 +47,7 @@ export interface IIamService {
 }
 
 export interface IClaimService {
-  hasClaim(roles: Array<string>, claim: string): Promise<boolean>;
+  hasClaim(roles: Array<string>, claim: string, namespace?: string): boolean
   initialize(): void;
 }
 
