@@ -14,10 +14,10 @@ export interface ITokenAdapter {
     decode(token: string): Promise<ITokenData>;
 }
 export interface IAuthService {
-    authenticateByUsername(username: string, password: string, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
+    authenticateByUsername(username: string, password: string, context: ExecutionContext): Promise<IIdentity>;
     authenticateBySystemUser(token: string, context: ExecutionContext): Promise<IIdentity>;
-    getIdentity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IIdentity>;
-    getIdentityEntity(id: string, isSystemUser: boolean, userNamespace: string, context: ExecutionContext): Promise<IUserEntity>;
+    getIdentity(id: string, isSystemUser: boolean, context: ExecutionContext): Promise<IIdentity>;
+    getIdentityEntity(id: string, isSystemUser: boolean, context: ExecutionContext): Promise<IUserEntity>;
     flattenRoles(roles: Array<string>): Array<string>;
 }
 export interface ITokenService {
@@ -29,26 +29,25 @@ export interface ITokenService {
     revokeSession(context: ExecutionContext, sessionStoreId: string): Promise<boolean>;
 }
 export interface IIamService {
-    authenticateByUsername(username: string, password: string, userNamespace: string, tokenType?: TokenType): Promise<string>;
+    authenticateByUsername(username: string, password: string, tokenType?: TokenType): Promise<string>;
     authenticateBySystemUser(systemUser: string, tokenType?: TokenType): Promise<string>;
     createInternalContext(systemUser: string, tokenType?: TokenType): Promise<ExecutionContext>;
     resolveExecutionContext(encodedToken: string, tokenType?: TokenType): Promise<ExecutionContext>;
-    hasClaim(context: ExecutionContext, claim: string, userNamespace: string): Promise<boolean>;
-    getIdentity(context: ExecutionContext, userNamespace: string): Promise<IIdentity>;
-    getIdentityEntity(context: ExecutionContext, userNamespace: string): Promise<IUserEntity>;
+    hasClaim(context: ExecutionContext, claim: string): Promise<boolean>;
+    getIdentity(context: ExecutionContext): Promise<IIdentity>;
+    getIdentityEntity(context: ExecutionContext): Promise<IUserEntity>;
     logout(context: ExecutionContext): Promise<boolean>;
     initialize(): void;
 }
 export interface IClaimService {
     hasClaim(roles: Array<string>, claim: string, namespace?: string): boolean;
-    initialize(): void;
 }
 export interface IIdentity {
     id: string;
     roles: Array<string>;
 }
 export interface IIdentityService {
-    authenticate(context: ExecutionContext, userNamespace: string, username: string, password: string): Promise<IIdentity>;
-    getIdentity(context: ExecutionContext, userNamespace: string, userId: string): Promise<IIdentity>;
-    getIdentityEntity(context: ExecutionContext, userNamespace: string, userId: string): Promise<IUserEntity>;
+    authenticate(context: ExecutionContext, username: string, password: string): Promise<IIdentity>;
+    getIdentity(context: ExecutionContext, userId: string): Promise<IIdentity>;
+    getIdentityEntity(context: ExecutionContext, userId: string): Promise<IUserEntity>;
 }
