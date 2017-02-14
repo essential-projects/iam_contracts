@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://www.npmjs.com"
   },
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "the referencable contracts for iam",
   "license": "MIT",
   "main": "dist/commonjs/index.js",
@@ -14,7 +14,7 @@
     "Simon Reymann <simon.reymann@quantusflow.com>"
   ],
   "dependencies": {
-    "@process-engine-js/core_contracts": "^1.0.28"
+    "@process-engine-js/core_contracts": "^1.0.31"
   },
   "devDependencies": {
     "gulp": "^3.9.1"
