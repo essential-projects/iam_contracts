@@ -52,6 +52,7 @@ export interface IClaimService {
 
 export interface IIdentity {
   id: string;
+  name: string;
   roles: Array<string>;
 }
 
