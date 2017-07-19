@@ -17,6 +17,8 @@
     "@process-engine-js/core_contracts": "^1.0.31"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "@process-engine-js/gulptraum": "^1.2.5",
+    "gulp": "^3.9.1",
+    "tsconfig": "^6.0.0"
   }
 }
