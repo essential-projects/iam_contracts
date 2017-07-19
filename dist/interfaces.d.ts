@@ -8,6 +8,7 @@ export interface IIdentityService {
     authenticate(context: ExecutionContext, username: string, password: string): Promise<IIdentity>;
     getIdentity(context: ExecutionContext, userId: string): Promise<IIdentity>;
     getIdentityEntity(context: ExecutionContext, userId: string): Promise<IUserEntity>;
+    getTemporaryIdentityEntity(context: ExecutionContext, identity: IIdentity): Promise<IUserEntity>;
 }
 export interface ITokenAdapter {
     tokenType: TokenType;
@@ -20,6 +21,7 @@ export interface IAuthService {
     getIdentity(id: string, isSystemUser: boolean, context: ExecutionContext): Promise<IIdentity>;
     getIdentityEntity(id: string, isSystemUser: boolean, context: ExecutionContext): Promise<IUserEntity>;
     flattenRoles(roles: Array<string>): Array<string>;
+    getTemporaryIdentityEntity(identity: IIdentity, context: ExecutionContext): Promise<IUserEntity>;
 }
 export interface ITokenService {
     initialize(): void;
