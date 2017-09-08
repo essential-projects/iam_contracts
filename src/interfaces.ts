@@ -1,4 +1,4 @@
-import { ExecutionContext, TokenType, IEntity, ITokenData, ISessionStoreData, IToPojoOptions, IIamService, IIdentity, IUserEntity } from '@process-engine-js/core_contracts';
+import { ExecutionContext, IEntity, IIamService, IIdentity, ISessionStoreData, ITokenData, IToPojoOptions, IUserEntity, TokenType } from '@process-engine-js/core_contracts';
 
 export interface ISessionStoreEntity extends IEntity {
   identityId: string;
@@ -38,6 +38,5 @@ export interface ITokenService {
 }
 
 export interface IClaimService {
-  hasClaim(roles: Array<string>, claim: string, namespace?: string): boolean
+  hasClaim(roles: Array<string>, claim: string, namespace?: string): boolean;
 }
-
