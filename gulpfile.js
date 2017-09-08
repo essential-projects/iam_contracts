@@ -1,9 +1,11 @@
 'use strict';
 
 const gulptraum = require('gulptraum');
+const gulptraumTypescriptPlugin = require('gulptraum-typescript');
 const tsconfig = require('tsconfig');
 
-const buildSystemConfig = {};
+const buildSystemConfig = {
+};
 
 const buildSystem = new gulptraum.BuildSystem(buildSystemConfig);
 
@@ -18,5 +20,5 @@ const typeScriptConfig = Object.assign({
 const gulp = require('gulp');
 
 buildSystem
-  .registerPlugin('typescript', gulptraum.plugins.typescript, typeScriptConfig)
+  .registerPlugin('typescript', gulptraumTypescriptPlugin, typeScriptConfig)
   .registerTasks(gulp);
