@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://www.npmjs.com"
   },
-  "version": "2.0.3",
+  "version": "0.1.0",
   "description": "the referencable contracts for iam",
   "license": "MIT",
   "main": "dist/commonjs/index.js",
@@ -17,7 +17,7 @@
     "@essential-projects/core_contracts": "^2.0.0"
   },
   "devDependencies": {
-    "@essential-projects/tslint-config": "^1.0.1",
+  "@essential-projects/tslint-config": "^0.1.0",
     "gulp": "^3.9.1",
     "gulptraum": "^2.2.1",
     "tsconfig": "^7.0.0",
