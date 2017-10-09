@@ -1,4 +1,4 @@
-import { ExecutionContext, IEntity, IIamService, IIdentity, ISessionStoreData, ITokenData, IToPojoOptions, IUserEntity, TokenType } from '@process-engine-js/core_contracts';
+import { ExecutionContext, IEntity, IIamService, IIdentity, ISessionStoreData, ITokenData, IToPojoOptions, IUserEntity, TokenType } from '@essential-projects/core_contracts';
 
 export type Claim = string;
 export type HasClaim = boolean;

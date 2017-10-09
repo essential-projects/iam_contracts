@@ -1,5 +1,5 @@
 {
-  "name": "@process-engine-js/iam_contracts",
+  "name": "@essential-projects/iam_contracts",
   "publishConfig": {
     "registry": "https://www.npmjs.com"
   },
@@ -14,10 +14,10 @@
     "Simon Reymann <simon.reymann@quantusflow.com>"
   ],
   "dependencies": {
-    "@process-engine-js/core_contracts": "^2.0.0"
+    "@essential-projects/core_contracts": "^2.0.0"
   },
   "devDependencies": {
-    "@process-engine-js/tslint-config": "^1.0.1",
+    "@essential-projects/tslint-config": "^1.0.1",
     "gulp": "^3.9.1",
     "gulptraum": "^2.2.1",
     "tsconfig": "^7.0.0",
