@@ -1,4 +1,4 @@
-import { ExecutionContext, IIdentity, IUserEntity} from '@essential-projects/core_contracts';
+import {ExecutionContext, IIdentity, IUserEntity} from '@essential-projects/core_contracts';
 
 export interface IAuthService {
   authenticateByUsername(username: string, password: string, context: ExecutionContext): Promise<IIdentity>;
