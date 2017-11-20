@@ -1,5 +1,5 @@
 import {ExecutionContext, ISessionStoreData, ITokenData, TokenType} from '@essential-projects/core_contracts';
-import {ISessionStoreEntity} from './isession_store_entity';
+import {ISessionStoreEntity} from './index';
 
 export interface ITokenService {
   initialize(): void;
