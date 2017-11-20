@@ -14,7 +14,7 @@
     "Simon Reymann <simon.reymann@quantusflow.com>"
   ],
   "dependencies": {
-    "@essential-projects/core_contracts": "^0.1.0"
+    "@essential-projects/core_contracts": "^0.2.1"
   },
   "devDependencies": {
     "@essential-projects/tslint-config": "^0.1.0",
