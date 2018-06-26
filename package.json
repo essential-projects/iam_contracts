@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "https://www.npmjs.com"
   },
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "the referencable contracts for iam",
   "license": "MIT",
   "main": "dist/commonjs/index.js",
