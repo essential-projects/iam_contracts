@@ -1,7 +1,7 @@
 export interface IIAMConfiguration {
-  ClientId: string;
-  ClientSecret: string;
-  IntrospectPath: string;
+  clientId: string;
+  clientSecret: string;
+  introspectPath: string;
   claimPath?: string;
   localStoragePrefix: string;
 }
