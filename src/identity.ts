@@ -1,5 +1,9 @@
 import {IIdentity} from './iidentity';
 
 export class Identity implements IIdentity {
-  public identity: string;
+  public token: string;
+
+  constructor(token: string) {
+    this.token = token;
+  }
 }
