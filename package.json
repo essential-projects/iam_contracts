@@ -12,9 +12,7 @@
     "Sebastian Meier <sebastian.meier@5minds.de>",
     "Christian Werner <christian.werner@5minds.de>"
   ],
-  "dependencies": {
-    "@essential-projects/core_contracts": "^2.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@essential-projects/tslint-config": "^1.0.0",
     "gulp": "^3.9.1",
