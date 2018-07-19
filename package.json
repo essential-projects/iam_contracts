@@ -3,19 +3,16 @@
   "publishConfig": {
     "registry": "https://www.npmjs.com"
   },
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "the referencable contracts for iam",
   "license": "MIT",
   "main": "dist/commonjs/index.js",
   "typings": "dist/index.d.ts",
   "contributors": [
     "Sebastian Meier <sebastian.meier@5minds.de>",
-    "Patrick Pötschke <patrick.poetschke@quantusflow.com>",
-    "Simon Reymann <simon.reymann@quantusflow.com>"
+    "Christian Werner <christian.werner@5minds.de>"
   ],
-  "dependencies": {
-    "@essential-projects/core_contracts": "^2.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@essential-projects/tslint-config": "^1.0.0",
     "gulp": "^3.9.1",
@@ -29,7 +26,6 @@
     "build": "gulp build",
     "prepare": "npm run build",
     "build-doc": "gulp doc",
-    "build-schemas": "gulp typescript-schema",
     "lint": "gulp lint",
     "test": "gulp test"
   }
