@@ -3,4 +3,5 @@ export interface IIAMConfiguration {
   clientSecret: string;
   introspectPath: string;
   claimPath?: string;
+  disableClaimCheck?: boolean;
 }
