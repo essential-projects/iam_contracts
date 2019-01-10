@@ -13,7 +13,7 @@ export class TokenBody {
    */
   public name?: string;
   /**
-   * A numerical that indicates the lifetime of the token.
+   * A numerical that indicates the tokens lifetime.
    */
   public iat?: number;
 }
