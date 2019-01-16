@@ -7,7 +7,7 @@ export interface IIdentity {
    */
   userId: string;
   /**
-   * The AuthToken connected to this identity.
+   * The AuthToken associated with this identity.
    */
   token: string;
 }
