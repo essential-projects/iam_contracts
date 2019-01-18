@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>7.0.0</Version>
+    <RootNamespace>EssentialProjects.IAM.Contracts</RootNamespace>
+    <AssemblyName>EssentialProjects.IAM.Contracts</AssemblyName>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Sebastian Meier;</Authors>
+    <Company>5Minds IT-Solutions GmbH &amp; Co. KG</Company>
+    <Description />
+    <Copyright>Copyright © 5Minds IT-Solutions GmbH &amp; Co. KG 2018</Copyright>
+    <PackageProjectUrl>https://github.com/essential-projects/iam_contracts</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/essential-projects/iam_contracts</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>IAM;Contracts;5Minds</PackageTags>
+    <PackageLicenseUrl />
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+  </ItemGroup>
+
+  
+
+</Project>
