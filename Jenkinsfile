@@ -46,9 +46,10 @@ pipeline {
     }
     stage('build') {
       steps {
-        sh('node --version')
-        sh('cd typescript')
-        sh('npm run build')
+        dir("${env.WORKSPACE}/typescript") {
+          sh('node --version')
+          sh('npm run build')
+        }
       }
     }
     stage('test') {
