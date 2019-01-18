@@ -26,7 +26,7 @@ pipeline {
   stages {
     stage('prepare') {
       steps {
-        dir("${env.WORKSPACE}/typescript") {
+        dir('typescript') {
           script {
             raw_package_version = sh(script: 'node --print --eval "require(\'./package.json\').version"', returnStdout: true).trim()
             package_version = raw_package_version.trim()
@@ -41,7 +41,7 @@ pipeline {
     }
     stage('lint') {
       steps {
-        dir("${env.WORKSPACE}/typescript") {
+        dir('typescript') {
           sh('node --version')
           /* we do not want the linting to cause a failed build */
           sh('npm run lint || true')
@@ -50,7 +50,7 @@ pipeline {
     }
     stage('build') {
       steps {
-        dir("${env.WORKSPACE}/typescript") {
+        dir('typescript') {
           sh('node --version')
           sh('npm run build')
         }
@@ -58,16 +58,15 @@ pipeline {
     }
     stage('test') {
       steps {
-        dir("${env.WORKSPACE}/typescript") {
+        dir('typescript') {
           sh('node --version')
-          sh('cd typescript')
           sh('npm run test')
         }
       }
     }
     stage('publish') {
       steps {
-        dir("${env.WORKSPACE}/typescript") {
+        dir('typescript') {
           script {
             def branch = env.BRANCH_NAME;
             def branch_is_master = branch == 'master';
@@ -84,7 +83,6 @@ pipeline {
                   }
                 }
 
-                sh('cd typescript')
                 def raw_package_name = sh(script: 'node --print --eval "require(\'./package.json\').name"', returnStdout: true).trim()
                 def current_published_version = sh(script: "npm show ${raw_package_name} version", returnStdout: true).trim();
                 def version_has_changed = current_published_version != raw_package_version;
@@ -92,7 +90,6 @@ pipeline {
                 if (version_has_changed) {
                   nodejs(configId: env.NPM_RC_FILE, nodeJSInstallationName: env.NODE_JS_VERSION) {
                     sh('node --version')
-                    sh('cd typescript')
                     sh('npm publish --ignore-scripts')
                   }
                 } else {
@@ -120,7 +117,7 @@ pipeline {
     }
     stage('cleanup') {
       steps {
-        dir("${env.WORKSPACE}/typescript") {
+        dir('typescript') {
           script {
             // this stage just exists, so the cleanup-work that happens in the post-script
             // will show up in its own stage in Blue Ocean
