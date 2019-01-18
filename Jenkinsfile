@@ -47,12 +47,14 @@ pipeline {
     stage('build') {
       steps {
         sh('node --version')
+        sh('cd typescript')
         sh('npm run build')
       }
     }
     stage('test') {
       steps {
         sh('node --version')
+        sh('cd typescript')
         sh('npm run test')
       }
     }
@@ -74,13 +76,15 @@ pipeline {
                 }
               }
 
-              def raw_package_name = sh(script: 'node --print --eval "require(\'./typescript/package.json\').name"', returnStdout: true).trim()
+              sh('cd typescript')
+              def raw_package_name = sh(script: 'node --print --eval "require(\'./package.json\').name"', returnStdout: true).trim()
               def current_published_version = sh(script: "npm show ${raw_package_name} version", returnStdout: true).trim();
               def version_has_changed = current_published_version != raw_package_version;
 
               if (version_has_changed) {
                 nodejs(configId: env.NPM_RC_FILE, nodeJSInstallationName: env.NODE_JS_VERSION) {
                   sh('node --version')
+                  sh('cd typescript')
                   sh('npm publish --ignore-scripts')
                 }
               } else {
