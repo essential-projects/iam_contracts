@@ -49,7 +49,7 @@ pipeline {
       steps {
         dir('dotnet') {
           sh('dotnet --version')
-          withCredentials([string(credentialsId: 'myget_process_engine_public_feed_token', variable: 'PROCESS_ENGINE_PUBLIC')]) {
+          withCredentials([string(credentialsId: 'myget_process_engine_public_feed_token', variable: 'ESSENTIAL_PROJECTS_PUBLIC')]) {
             script {
 
               def packageVersion = nuGetTools.getPackageVersionFromCSProjFile(
@@ -59,16 +59,16 @@ pipeline {
               echo "Package version is ${packageVersion}.";
 
               def packageWasAlreadyPublished = nuGetTools.isNuGetPackagePublished(
-                nuGetFeedURL: "https://5minds.myget.org/F/process_engine_public/api/v3/index.json",
+                nuGetFeedURL: "https://5minds.myget.org/F/essential_projects_public/api/v3/index.json",
                 package: "EssentialProjects.IAM.Contracts",
                 version: packageVersion,
-                nuGetToken: PROCESS_ENGINE_PUBLIC,
+                nuGetToken: ESSENTIAL_PROJECTS_PUBLIC,
               );
 
               if (packageWasAlreadyPublished) {
                 echo "Package version was already published, skipping publish.";
               } else {
-                sh("dotnet nuget push dotnet/src/bin/Release/EssentialProjects.IAM.Contracts.*.nupkg --api-key $PROCESS_ENGINE_PUBLIC --source https://5minds.myget.org/F/process_engine_public/api/v2");
+                sh("dotnet nuget push dotnet/src/bin/Release/EssentialProjects.IAM.Contracts.*.nupkg --api-key $ESSENTIAL_PROJECTS_PUBLIC --source https://5minds.myget.org/F/essential_projects_public/api/v2");
               }
             }
           }
