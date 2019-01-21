@@ -68,7 +68,7 @@ pipeline {
               if (packageWasAlreadyPublished) {
                 echo "Package version was already published, skipping publish.";
               } else {
-                sh("dotnet nuget push dotnet/src/bin/Release/EssentialProjects.IAM.Contracts.*.nupkg --api-key $ESSENTIAL_PROJECTS_PUBLIC --source https://5minds.myget.org/F/essential_projects_public/api/v2");
+                sh("dotnet nuget push src/bin/Release/EssentialProjects.IAM.Contracts.*.nupkg --api-key $ESSENTIAL_PROJECTS_PUBLIC --source https://5minds.myget.org/F/essential_projects_public/api/v2");
               }
             }
           }
