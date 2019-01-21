@@ -49,11 +49,11 @@ pipeline {
       steps {
         dir('dotnet') {
           sh('dotnet --version')
-          withCredentials([string(credentialsId: 'myget_process_engine_public_feed_token', variable: 'ESSENTIAL_PROJECTS_PUBLIC')]) {
+          withCredentials([string(credentialsId: 'myget_essential_projects_public_feed_token', variable: 'ESSENTIAL_PROJECTS_PUBLIC')]) {
             script {
 
               def packageVersion = nuGetTools.getPackageVersionFromCSProjFile(
-                fileName: 'dotnet/src/EssentialProjects.IAM.Contracts.csproj',
+                fileName: 'src/EssentialProjects.IAM.Contracts.csproj',
               );
 
               echo "Package version is ${packageVersion}.";
