@@ -4,6 +4,7 @@
  * The property names are based on the IdentityServer's token schema.
  */
 export class TokenBody {
+
   /**
    * The users unique ID.
    */
@@ -16,4 +17,5 @@ export class TokenBody {
    * A numerical that indicates the tokens lifetime.
    */
   public iat?: number;
+
 }
