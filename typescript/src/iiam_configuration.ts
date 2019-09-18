@@ -4,6 +4,7 @@ export interface IIAMConfiguration {
   introspectPath: string;
   claimPath?: string;
   disableClaimCheck?: boolean;
+  allowGodToken?: boolean;
   cache?: IClaimCacheConfiguration;
 }
 
